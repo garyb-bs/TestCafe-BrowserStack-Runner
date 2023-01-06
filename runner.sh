@@ -37,9 +37,9 @@ common_env(){
     # export BROWSERSTACK_BUILD_ID="test-cafe-{$(date +"%Y-%m-%d %H:%M:%S")}"
 
     # you can overwrite this name to set the buildname
-    BROWSERSTACK_BUILD_NAME="browserstack-examples-testcafe"
+    #BROWSERSTACK_BUILD_NAME="browserstack-examples-testcafe"
     # set buildname to <BROWSERSTACK_BUILD_NAME>-epoch
-    export BROWSERSTACK_BUILD_ID=$BROWSERSTACK_BUILD_NAME+"-$(date +"%s")" 
+    export BROWSERSTACK_BUILD_NAME="browserstack-examples-testcafe"+"-$(date +"%s")" 
 
     # enable/ disable the debugging logs generated
     export BROWSERSTACK_DEBUG="true"
