@@ -16,7 +16,7 @@ steps:
   displayName: 'Install Node.js'
 - task: CmdLine@2
   inputs:
-    script: 'set BROWSERSTACK_BUILD_NAME=''MyTestBuildGB'
+    script: 'export BROWSERSTACK_BUILD_NAME=''MyTestBuildGB'
 - task: BrowserStackConfig@0
   inputs:
     BrowserStackServiceEndPoint: 'BS_Demo_Creds'
