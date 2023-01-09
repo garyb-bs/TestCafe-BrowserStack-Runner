@@ -15,7 +15,7 @@ testcafe="./node_modules/.bin/testcafe"
 
 
 # set the path to the local binary
-local_binary="/Users/garybehan/Downloads/BrowserStackLocal"
+local_binary=""
 
 
 
@@ -29,18 +29,17 @@ common_env(){
     
     
     # browserstack credentials
-    export BROWSERSTACK_USERNAME=""
-    export BROWSERSTACK_ACCESS_KEY=""
+    #export BROWSERSTACK_USERNAME=""
+    #export BROWSERSTACK_ACCESS_KEY=""
 
     # set the build name, a build is a logical grouping of tests on the automate dashboard
     # uncomment the line below if build id should be date + time
     # export BROWSERSTACK_BUILD_ID="test-cafe-{$(date +"%Y-%m-%d %H:%M:%S")}"
 
     # you can overwrite this name to set the buildname
-    #BROWSERSTACK_BUILD_NAME="browserstack-examples-testcafe"
+    export BROWSERSTACK_BUILD_NAME="browserstack-examples-testcafe"
     # set buildname to <BROWSERSTACK_BUILD_NAME>-epoch
-    export BROWSERSTACK_BUILD_NAME="browserstack-examples-testcafe121212121"
-    export BROWSERSTACK_BUILD_ID="browserstack-examples-testcafe121212121"
+    export BROWSERSTACK_BUILD_ID=$BROWSERSTACK_BUILD_NAME 
 
     # enable/ disable the debugging logs generated
     export BROWSERSTACK_DEBUG="true"
