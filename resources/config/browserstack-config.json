@@ -1,6 +1,6 @@
 {
     "browserstack.maskCommands":    "setValues",
     "browserstack.idleTimeout":    "300",
-    "username": "$BROWSERSTACK_USERNAME",
-    "accessKey": "$BROWSERSTACK_ACCESS_KEY"
+    "browserstack.username": "$BROWSERSTACK_USERNAME",
+    "browserstack.accessKey": "$BROWSERSTACK_ACCESS_KEY"
 }
