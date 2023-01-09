@@ -29,8 +29,8 @@ common_env(){
     
     
     # browserstack credentials
-    export BROWSERSTACK_USERNAME="garyb_bE4JkU"
-    export BROWSERSTACK_ACCESS_KEY="pdssmsj9TXxUef71xdej"
+    export BROWSERSTACK_USERNAME=""
+    export BROWSERSTACK_ACCESS_KEY=""
 
     # set the build name, a build is a logical grouping of tests on the automate dashboard
     # uncomment the line below if build id should be date + time
