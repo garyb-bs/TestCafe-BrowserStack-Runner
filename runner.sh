@@ -95,69 +95,69 @@ run_single_test(){
 
 # run one test on multiple browsers
 # runs 1 t on N browsers
-run_parallel_1t_Nb(){
+# run_parallel_1t_Nb(){
 
-    test_base_path="src/test/suites"
+#     test_base_path="src/test/suites"
 
-    # list of all browsers
-    browser_list=("@browserStack/browserstack:firefox@75.0:Windows 8.1" "@browserStack/browserstack:chrome@80.0:OS X High Sierra" "@browserStack/browserstack:firefox@75.0:Windows 8.1" "@browserStack/browserstack:Samsung Galaxy S20@10.0" "@browserStack/browserstack:iPhone XS@13.0")
+#     # list of all browsers
+#     browser_list=("@browserStack/browserstack:firefox@75.0:Windows 8.1" "@browserStack/browserstack:chrome@80.0:OS X High Sierra" "@browserStack/browserstack:firefox@75.0:Windows 8.1" "@browserStack/browserstack:Samsung Galaxy S20@10.0" "@browserStack/browserstack:iPhone XS@13.0")
 
-    # loop over all tests 
-    for test_path in $(find $test_base_path -type f -print)
-    do
-        # loop over all browsers and start parallel testcafe sessions.
-        # note the '&' at the end of the testcafe command, this makes all the tests
-        # in the loop run as parallel processes
-        for browser in "${browser_list[@]}"
-            do
-                $testcafe "$browser"  $test_path --test-scheduling --reporter spec &
-            done
-            echo "iteration complete"
-        wait
-    done
+#     # loop over all tests 
+#     for test_path in $(find $test_base_path -type f -print)
+#     do
+#         # loop over all browsers and start parallel testcafe sessions.
+#         # note the '&' at the end of the testcafe command, this makes all the tests
+#         # in the loop run as parallel processes
+#         for browser in "${browser_list[@]}"
+#             do
+#                 $testcafe "$browser"  $test_path --test-scheduling --reporter spec &
+#             done
+#             echo "iteration complete"
+#         wait
+#     done
 
-}
+# }
 
 
 
 # run all tests on bstack in parallel on one browser
-run_all_fixtures(){
+# run_all_fixtures(){
 
-    # base path to folder where all the test files are 
-    test_base_path="src/test/suites"
-    browser="@browserStack/browserstack:chrome@84.0:Windows 10"
+#     # base path to folder where all the test files are 
+#     test_base_path="src/test/suites"
+#     browser="@browserStack/browserstack:chrome@84.0:Windows 10"
 
-    # set this variable to the max number of parallels you have on browserstack
-    # we would execute all the tests in batches of max_parallel tests. Thus
-    # at a given time a max of max_parallel tests would be running in parallel
-    # this helps prevent queuing and test dropping
-    max_parallels=5
+#     # set this variable to the max number of parallels you have on browserstack
+#     # we would execute all the tests in batches of max_parallel tests. Thus
+#     # at a given time a max of max_parallel tests would be running in parallel
+#     # this helps prevent queuing and test dropping
+#     max_parallels=5
 
-    # the i counter helps in creating the batches
-    i=0
+#     # the i counter helps in creating the batches
+#     i=0
 
-    # iterate through all the files in the test_base_path diretory
-    for test_path in $(find $test_base_path -type f -print)
-    do
-        # this is the case when i max_parallel-1. This signifies the last test ina batch from i=0 to 
-        # max_parallel-1 thus after this test we put a wait. A wait basically stops execution until all 
-        # processes have finished execution. In our case this means, it waits until a batch of max_parallel 
-        # has finished execution
-        if [ $((i%max_parallels)) == $((max_parallels-1)) ]; then
-            $testcafe "$browser"  "$test_path" --test-scheduling --skip-js-errors
-            wait
+#     # iterate through all the files in the test_base_path diretory
+#     for test_path in $(find $test_base_path -type f -print)
+#     do
+#         # this is the case when i max_parallel-1. This signifies the last test ina batch from i=0 to 
+#         # max_parallel-1 thus after this test we put a wait. A wait basically stops execution until all 
+#         # processes have finished execution. In our case this means, it waits until a batch of max_parallel 
+#         # has finished execution
+#         if [ $((i%max_parallels)) == $((max_parallels-1)) ]; then
+#             $testcafe "$browser"  "$test_path" --test-scheduling --skip-js-errors
+#             wait
         
-        else
-        # notice the & at the end. This means that the next test would be run in parallel with this test
-        # this command is executed when i=0,1,...,max_parallel-2
-            $testcafe "$browser"  "$test_path" --test-scheduling --skip-js-errors &
-        fi
-        # increment i
-        i=$((i+1))
-    done
-    wait
-    echo ""
-}
+#         else
+#         # notice the & at the end. This means that the next test would be run in parallel with this test
+#         # this command is executed when i=0,1,...,max_parallel-2
+#             $testcafe "$browser"  "$test_path" --test-scheduling --skip-js-errors &
+#         fi
+#         # increment i
+#         i=$((i+1))
+#     done
+#     wait
+#     echo ""
+# }
 
 start_local()
 {
@@ -201,12 +201,12 @@ bstack_logic(){
     elif [ $profile == "parallel" ]; then
         # runs all test in parallel, you can set max parallels in the run_all_fixtures
         # function. 
-        run_all_fixtures
+#         run_all_fixtures
 
     elif [ $profile == "parallel-browsers" ]; then
         # runs a single test on multiple browsers in parallel
         # covers both mobile and desktop browsers
-        run_parallel_1t_Nb
+#         run_parallel_1t_Nb
 
     # all the below profiles are similar to the above profiles except, 
     # the test base url is set to a localhost address. 
@@ -218,12 +218,12 @@ bstack_logic(){
     elif [ $profile == "local-parallel" ]; then
         # runs all test on localhost:3000 (internal url) in parallel, you can set max parallels in the run_all_fixtures
         # function. 
-        run_all_fixtures
+#         run_all_fixtures
 
     elif [ $profile == "local-parallel-browsers" ]; then
         # runs a single test on localhost:3000 (internal url) across multiple browsers in parallel
         # covers both mobile and desktop browsers
-        run_parallel_1t_Nb
+#         run_parallel_1t_Nb
     else
         echo "invalid profile option; profile should be from (\"single\", \"local\", \"parallel\", \"parallel-browsers\", \"local-parallel\", \"local-parallel-browsers\""
     fi
