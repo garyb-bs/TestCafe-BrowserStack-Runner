@@ -40,6 +40,7 @@ common_env(){
     #BROWSERSTACK_BUILD_NAME="browserstack-examples-testcafe"
     # set buildname to <BROWSERSTACK_BUILD_NAME>-epoch
     export BROWSERSTACK_BUILD_NAME="browserstack-examples-testcafe121212121"
+    export BROWSERSTACK_BUILD_ID="browserstack-examples-testcafe121212121"
 
     # enable/ disable the debugging logs generated
     export BROWSERSTACK_DEBUG="true"
